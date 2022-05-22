@@ -1,0 +1,5 @@
+@font-face {
+  font-family: "montserrat";
+  src: local("montserrat"),
+   url("../font/montserrat.ttf") format("truetype");
+}
