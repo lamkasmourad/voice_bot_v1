@@ -51,10 +51,10 @@
               </svg>
             </button>
           </div>
-          <div v-if="isLoading">
+          <div>
             <loader :loading="isLoading"></loader>
           </div>
-          <ul v-else>
+          <ul >
             <li
               class="
                 flex
@@ -168,7 +168,7 @@
                 transition
               "
             >
-              <div class="flex ml-2">
+              <div class="flex esml-2">
                 <img
                   src="https://i.imgur.com/agRGhBc.jpg"
                   width="40"
@@ -263,6 +263,8 @@
 <script setup lang="ts">
 // @ts-ignore
 import { ref } from "vue";
+import Loader from '@/components/Loader.vue';
+
 let isLoading = ref(false);
 
 function search() {

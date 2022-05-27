@@ -8,11 +8,13 @@
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "montserrat",Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #212529;
   margin-top: 60px;
 }
 </style>
