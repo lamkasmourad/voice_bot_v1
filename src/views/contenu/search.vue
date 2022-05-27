@@ -21,6 +21,7 @@
               placeholder="Search"
               class="
                 bg-white
+                focus:ring 
                 h-10
                 px-5
                 pr-10
