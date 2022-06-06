@@ -1,6 +1,6 @@
 <template>
   <div>
-    <loading :active="isLoading" loader="bars" :on-cancel="onCancel" :can-cancel="true" :is-full-page="fullPage">
+    <loading :active="isLoading" loader="bars" :on-cancel="onCancel" :can-cancel="true" :is-full-page="true">
     </loading>
   </div>
 </template>
@@ -9,10 +9,6 @@
 import { ref, watch } from "vue";
 const props = defineProps({
   loading: Boolean,
-  fullPage: {
-    type: Boolean,
-    defaut: true
-  },
 });
 
 const isLoading = ref(false);

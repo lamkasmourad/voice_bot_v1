@@ -7,6 +7,6 @@ export const router = createRouter({
     history: createWebHistory(),
     routes:[
         {path: "/" , name: "Home", component : Search},
-        {path: "/list", name:"handle-contenu", component:HandleContenu }
+        {path: "/handle", name:"handle-contenu", component:HandleContenu }
     ]
 })
