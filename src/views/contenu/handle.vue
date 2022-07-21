@@ -16,26 +16,27 @@
                 <div class="w-full p-4 ">
 
                     <div>
-                        <form>
+                        <form @submit.prevent="createContenu">
                             <div class="relative mb-8 z-0">
                                 <input type="text" id="text" v-model="formData.text" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required/>
                                 <label for="text" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Texte</label>
                             </div>
                             <div class="relative z-0 w-full mb-8 group">
-                                <input type="text" name="controle_question" id="controle_question" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <input type="text" name="controle_question" v-model="formData.controleQuestion" id="controle_question" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                                 <label for="controle_question" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Controle question</label>
                             </div>
                             <div class="relative z-0 w-full mb-8 group">
-                                <input type="text" name="scenario" id="scenario" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <input type="text" name="scenario" id="scenario" v-model="formData.scenario" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                                 <label for="scenario" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Scénario</label>
                             </div>
                             <div class="relative z-0 w-full mb-9 group top-2.5">
                                 <label for="categories" class="peer-focus:font-medium text-gray-500 dark:text-gray-400 text-sm float-left mb-2" >Catégories</label>
                                 <multiselect
-                                        v-model="formData.categories"
+                                        v-model="formData.selectedCategories"
                                         :options="categories"
                                         id="categories"
                                         mode="tags"
+                                        placeholder="Choisissez le(s) produits"
                                         noResultsText="Aucun résultat"
                                         :close-on-select="false"
                                 />
@@ -55,18 +56,32 @@
 
 <script lang="ts" setup>
     import {ref,reactive} from "vue";
+    // @ts-ignore
+    import ContenuService from "@/services/ContenuService";
+    // @ts-ignore
+    import CategoryService from "@/services/CategoryService";
 
     const formData = reactive({
         text: "",
         controleQuestion: "",
-        scenario: "",
-        categories: [],
+        scenario: "",   
+        selectedCategories: [],
     });
 
-    const categories =reactive(["Habitation","Santé"]) ;
+    const categories = ref([]); 
+    
+    CategoryService.getAllCategories().then((data: any) =>{
+        categories.value = data; 
+        console.log(categories.value); 
+    })
+    
+    function createContenu(){
+        ContenuService.createContenu(formData).then((data: any) => {
+        })
+    }
 
 </script>
-
+Ò
 <style scoped>
     label{
         left :0;
