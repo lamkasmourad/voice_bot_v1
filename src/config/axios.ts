@@ -5,4 +5,4 @@ const HTTP: AxiosInstance = axios.create({
     "Content-type": "application/json",
   },
 });
-export default HTTP;
+export default HTTP; 
