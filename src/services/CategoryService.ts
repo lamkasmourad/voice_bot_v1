@@ -7,8 +7,6 @@ class CategoryService {
 
     getAllCategories() : Promise<any> {
         return http.get("category/all").then((response: any) => {
-            let type = typeof response.data; 
-            console.log(type);
             return response.data; 
         });  
     }

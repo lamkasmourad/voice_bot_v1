@@ -203,9 +203,23 @@
         </div>
       </div>
     </div>
-        
-        <level-picker/>
+    <modal-right title="Modifer les mots clès">
+        <perfect-scrollbar>
 
+          <div class="modal-content">
+          <div class="flex-auto overflow-y-auto relative p-4">
+            <p>
+              This is some placeholder content to show the scrolling behavior for
+              modals. We use repeated line breaks to demonstrate how content can
+              exceed minimum inner height, thereby showing inner scrolling. When
+              content becomes longer than the predefined max-height of modal,
+              content will be cropped and scrollable within the modal.
+            </p>
+          </div>
+        </div>
+      </perfect-scrollbar>
+      
+    </modal-right>
   </div>
 </template>
 
@@ -216,9 +230,9 @@ import ContenuService from "@/services/ContenuService";
 // @ts-ignore
 import CategoryService from "@/services/CategoryService";
 
-import ModalRight from "@/components/shared/ModalRight.vue"
+import ModalRight from "@/components/shared/Modal.vue";
 
-import LevelPicker from "@/components/shared/LevelPicker.vue"
+import LevelPicker from "@/components/shared/LevelPicker.vue";
 
 const formData = reactive({
   text: "",
@@ -240,14 +254,13 @@ const categories = ref([]);
 
 CategoryService.getAllCategories().then((data: any) => {
   categories.value = data;
-  console.log(categories.value);
 });
 
 function createContenu() {
   ContenuService.createContenu(formData).then((data: any) => {});
 }
 </script>
-Ò
+
 <style scoped>
 label {
   left: 0;
