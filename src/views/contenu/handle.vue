@@ -35,7 +35,7 @@
                     peer
                   "
                   placeholder=" "
-                  required
+                  
                 />
                 <label
                   for="text"
@@ -80,7 +80,7 @@
                     peer
                   "
                   placeholder=" "
-                  required
+                  
                 />
                 <label
                   for="controle_question"
@@ -126,7 +126,7 @@
                     peer
                   "
                   placeholder=" "
-                  required
+                  
                 />
                 <label
                   for="scenario"
@@ -178,6 +178,7 @@
 
               <button
                 type="submit"
+                @click="openModal"
                 class="
                   text-white
                   bg-blue-700
@@ -203,7 +204,7 @@
         </div>
       </div>
     </div>
-    <modal-right title="Modifer les mots clès">
+    <modal-right title="Modifer les mots clès" :open="openModal">
         <perfect-scrollbar>
 
           <div class="modal-content">
@@ -224,7 +225,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive } from "vue";
+import { ref,onMounted, reactive } from "vue";
 // @ts-ignore
 import ContenuService from "@/services/ContenuService";
 // @ts-ignore
@@ -241,24 +242,23 @@ const formData = reactive({
   selectedCategories: [],
 });
 
-const isOpen = ref(true);
+const openModal = ref(false);
 
-function closeModal() {
-  isOpen.value = false;
-}
-function openModal() {
-  isOpen.value = true;
-}
-const isOpened = true;
 const categories = ref([]);
 
-CategoryService.getAllCategories().then((data: any) => {
-  categories.value = data;
-});
+
+
+onMounted(() => {
+  CategoryService.getAllCategories().then((data: any) => {
+    categories.value = data;
+  });
+})
 
 function createContenu() {
-  ContenuService.createContenu(formData).then((data: any) => {});
+  openModal.value = true;
+  //ContenuService.createContenu(formData).then((data: any) => {});
 }
+
 </script>
 
 <style scoped>
