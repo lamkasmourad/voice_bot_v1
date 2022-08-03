@@ -30,7 +30,7 @@
                     bg-transparent
                     border-0 border-b-2 border-gray-300
                     appearance-none
-                    dark:border-gray-600 dark:focus:border-blue-500
+                     dark:focus:border-blue-500
                     focus:outline-none focus:ring-0 focus:border-blue-600
                     peer
                   "
@@ -75,7 +75,7 @@
                     bg-transparent
                     border-0 border-b-2 border-gray-300
                     appearance-none
-                    dark:border-gray-600 dark:focus:border-blue-500
+                     dark:focus:border-blue-500
                     focus:outline-none focus:ring-0 focus:border-blue-600
                     peer
                   "
@@ -121,7 +121,7 @@
                     bg-transparent
                     border-0 border-b-2 border-gray-300
                     appearance-none
-                    dark:border-gray-600 dark:focus:border-blue-500
+                     dark:focus:border-blue-500
                     focus:outline-none focus:ring-0 focus:border-blue-600
                     peer
                   "
@@ -178,7 +178,6 @@
 
               <button
                 type="submit"
-                @click="openModal"
                 class="
                   text-white
                   bg-blue-700
@@ -226,6 +225,8 @@
 
 <script lang="ts" setup>
 import { ref,onMounted, reactive } from "vue";
+import { useRoute } from 'vue-router'
+
 // @ts-ignore
 import ContenuService from "@/services/ContenuService";
 // @ts-ignore
@@ -246,11 +247,18 @@ const openModal = ref(false);
 
 const categories = ref([]);
 
-
+const route = useRoute()
 
 onMounted(() => {
+   
   CategoryService.getAllCategories().then((data: any) => {
     categories.value = data;
+  }).then(()=> {
+    if(route.params.id!==undefined){
+        ContenuService.getContenu(route.params.id).then((selectedContenu: any)=>{
+           Object.assign(formData, selectedContenu)
+        });
+    }
   });
 })
 
@@ -268,14 +276,13 @@ label {
 
 .multiselect {
   border: none;
-  border-bottom: 2px solid #4b5563;
+  border-bottom: 2px solid rgb(209 213 219);
   border-radius: 0px;
   background-color: transparent;
 }
 
 .multiselect.is-open {
-  background: var(--ms-bg, #fff);
-  border: var(--ms-border-width, 1px) solid var(--ms-border-color, #d1d5db);
+  border-bottom: var(--ms-border-width, 1px) solid var(--ms-border-color, #d1d5db);
   box-shadow: none;
 }
 </style>

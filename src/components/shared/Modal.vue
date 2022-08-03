@@ -183,7 +183,6 @@ function closeModal(){
 let stateOpen = toRefs(props).open
 watch(() => stateOpen,
 (oldValue,newValue) => {
-  console.log('yes working watcher ' + newValue.value ) 
   if(newValue!=undefined){
     showModal.value = newValue.value
   }
