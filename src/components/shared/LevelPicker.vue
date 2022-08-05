@@ -24,8 +24,8 @@ function updateSelectedLevel(level: string){
   state.chosenLevel = level; 
 }
 
-const LEVELS  = ['faible','moyen','fort','élevé','très élevé']; 
-
+//const LEVELS  = ['faible','moyen','fort','élevé','exceptionnelle']; 
+const LEVELS = ['F','M','F','E','T'];
 
 const {chosenLevel} = toRefs(state)
 
@@ -35,9 +35,7 @@ const {chosenLevel} = toRefs(state)
 <style>
 
 .vertical-align {
-  display: table-cell;
   vertical-align: middle;
-  height: 100vh;
 }
 
 .button-link {
@@ -51,7 +49,8 @@ const {chosenLevel} = toRefs(state)
   height: 25px;
   float: none;
   margin: 0 auto;
-  width: 900px;
+  margin-top:10px;
+  width: 100%;
   max-width: 100%;
   border-radius: 40px;
   display: block;
@@ -78,7 +77,7 @@ const {chosenLevel} = toRefs(state)
   border-radius: 0 40px 40px 0;
 }
 .btns .btn {
-  font-size: 19px;
+  font-size: 14px;
   cursor: pointer;
   width: 100%;
   display: table-cell;

@@ -4,18 +4,18 @@
     <!-- Button trigger modal -->
 
     <!-- Modal -->
-    <div
+    <div v-show="open"
       class="
         z-40
         fixed
-        top-0
+        top-3
         left-0
         w-full
         h-full
         outline-none
         overflow-x-hidden overflow-y-auto
       "
-      v-show="showModal"
+      
       id="exampleModalScrollable"
       tabindex="-1"
       aria-labelledby="exampleModalScrollableLabel"
@@ -24,7 +24,7 @@
       <div
         class="
           sm:h-[calc(100%-3rem)]
-          max-w-lg
+          max-w-2xl
           my-6
           mx-auto
           relative
@@ -83,13 +83,14 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="flex-auto overflow-y-auto relative p-4">
-            <slot> </slot>
-
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+          <div class="flex-auto overflow-y-auto relative p-4 mt-10">
+            <perfect-scrollbar>
+              <slot> </slot>
+              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            </perfect-scrollbar>
           </div>
           <div
             class="
@@ -166,29 +167,31 @@
 </template>
 
 <script setup lang="ts">
-import {  watch,ref,toRefs } from 'vue'
+import { watch, ref, toRefs } from "vue";
 
 const props = defineProps({
   title: String,
   open: Boolean,
 });
 
-const showModal = ref(false)
+const showModal = ref(false);
 
-function closeModal(){
-  console.log('close Modal'); 
-  showModal.value= false; 
+function closeModal() {
+  showModal.value = false;
 }
 
-let stateOpen = toRefs(props).open
-watch(() => stateOpen,
-(oldValue,newValue) => {
-  if(newValue!=undefined){
-    showModal.value = newValue.value
-  }
-},
-  {  deep: true  }
+let stateOpen = toRefs(props).open;
+watch(
+  () => stateOpen,
+  (oldValue, newValue) => {
+    console.log(newValue)
+    if (newValue != undefined) {
+      console.log('yes open modal ' + newValue.value);
+      showModal.value = newValue.value;
+    }
+  },
+  { deep: true }
 );
 
-let { title } = props;
+let { title,open } = props;
 </script>

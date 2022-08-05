@@ -203,23 +203,7 @@
         </div>
       </div>
     </div>
-    <modal-right title="Modifer les mots clès" :open="openModal">
-        <perfect-scrollbar>
-
-          <div class="modal-content">
-          <div class="flex-auto overflow-y-auto relative p-4">
-            <p>
-              This is some placeholder content to show the scrolling behavior for
-              modals. We use repeated line breaks to demonstrate how content can
-              exceed minimum inner height, thereby showing inner scrolling. When
-              content becomes longer than the predefined max-height of modal,
-              content will be cropped and scrollable within the modal.
-            </p>
-          </div>
-        </div>
-      </perfect-scrollbar>
-      
-    </modal-right>
+    <addkeyword></addkeyword>
   </div>
 </template>
 
@@ -232,9 +216,7 @@ import ContenuService from "@/services/ContenuService";
 // @ts-ignore
 import CategoryService from "@/services/CategoryService";
 
-import ModalRight from "@/components/shared/Modal.vue";
-
-import LevelPicker from "@/components/shared/LevelPicker.vue";
+import addkeyword from "@/components/contenu/AddKeyword.vue";
 
 const formData = reactive({
   text: "",
@@ -263,6 +245,7 @@ onMounted(() => {
 })
 
 function createContenu() {
+  console.log("open modal"); 
   openModal.value = true;
   //ContenuService.createContenu(formData).then((data: any) => {});
 }
