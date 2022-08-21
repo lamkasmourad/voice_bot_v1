@@ -1,0 +1,1 @@
+export const weights = {4:'F',6:'M',8:'F',10:'E',12:'T'};

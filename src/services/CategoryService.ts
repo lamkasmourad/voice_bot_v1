@@ -1,4 +1,4 @@
-// @ts-ignore  
+// @  
 import http from "@/config/axios.ts"; 
 
 class CategoryService {

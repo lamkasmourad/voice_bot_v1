@@ -262,7 +262,7 @@
 </template>
 
 <script setup lang="ts">
-// @ts-ignore
+// @
 import { ref } from "vue";
 import Loader from '@/components/Loader.vue';
 

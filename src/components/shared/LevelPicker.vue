@@ -1,9 +1,9 @@
 <template>
  <div class="vertical-align">
     <div class="btns">
-      <label v-for="(level,key) in LEVELS" :key="key" @click="updateSelectedLevel(level)">
-        <input name="button-group" type="radio" value="item"/>
-        <span class="btn first">{{ useCapitalize(level)  }}</span>
+      <label v-for="(weight,key) in weights" :key="key">
+        <input  type="radio" :name="'group-'+props.groupId" :value="key" @input="updateLevel"/>
+        <span class="btn first">{{ useCapitalize(weight)  }}</span>
       </label>
     </div>
   </div>
@@ -12,23 +12,21 @@
 
 <script setup lang="ts">
 import { reactive,  toRefs } from "@vue/reactivity";
-// @ts-ignore  
-import {useCapitalize} from "@/helpers/capitilize.js"; 
- 
+// @  
+import {useCapitalize} from "@/helpers/capitilize.js";
+// @ 
+import { weights }  from "@/config/weights";  
 
-const state = reactive({
-  chosenLevel : 'faible'
+const props = defineProps({
+    level:Number,
+    groupId: Number
 })
 
-function updateSelectedLevel(level: string){
-  state.chosenLevel = level; 
+const emit = defineEmits(['update:level'])
+
+const updateLevel = (event: any) => {
+    emit('update:level', parseInt(event.target.value))
 }
-
-//const LEVELS  = ['faible','moyen','fort','élevé','exceptionnelle']; 
-const LEVELS = ['F','M','F','E','T'];
-
-const {chosenLevel} = toRefs(state)
-
 
 </script>
 

@@ -211,9 +211,9 @@
 import { ref,onMounted, reactive } from "vue";
 import { useRoute } from 'vue-router'
 
-// @ts-ignore
+// @
 import ContenuService from "@/services/ContenuService";
-// @ts-ignore
+// @
 import CategoryService from "@/services/CategoryService";
 
 import addkeyword from "@/components/contenu/AddKeyword.vue";
