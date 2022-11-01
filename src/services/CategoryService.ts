@@ -1,5 +1,5 @@
-// @  
-import http from "@/config/axios.ts"; 
+  
+import http from "@/config/axios"; 
 
 class CategoryService {
 

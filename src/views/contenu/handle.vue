@@ -203,20 +203,16 @@
         </div>
       </div>
     </div>
-    <addkeyword></addkeyword>
+    <keyword-list></keyword-list>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref,onMounted, reactive } from "vue";
 import { useRoute } from 'vue-router'
-
-// @
 import ContenuService from "@/services/ContenuService";
-// @
 import CategoryService from "@/services/CategoryService";
-
-import addkeyword from "@/components/contenu/AddKeyword.vue";
+import KeywordList from "@/components/contenu/KeywordList.vue";
 
 const formData = reactive({
   text: "",
@@ -232,7 +228,6 @@ const categories = ref([]);
 const route = useRoute()
 
 onMounted(() => {
-   
   CategoryService.getAllCategories().then((data: any) => {
     categories.value = data;
   }).then(()=> {

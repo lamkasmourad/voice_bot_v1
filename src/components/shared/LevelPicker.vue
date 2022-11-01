@@ -2,25 +2,25 @@
  <div class="vertical-align">
     <div class="btns">
       <label v-for="(weight,key) in weights" :key="key">
-        <input  type="radio" :name="'group-'+props.groupId" :value="key" @input="updateLevel"/>
+        <input  type="radio" :name="'group-'+groupid" :value="key" @input="updateLevel"/>
         <span class="btn first">{{ useCapitalize(weight)  }}</span>
       </label>
     </div>
   </div>
 
 </template>
-
+    
 <script setup lang="ts">
 import { reactive,  toRefs } from "@vue/reactivity";
-// @  
+  
 import {useCapitalize} from "@/helpers/capitilize.js";
-// @ 
+ 
 import { weights }  from "@/config/weights";  
 
-const props = defineProps({
-    level:Number,
-    groupId: Number
-})
+const props = defineProps<{
+    level:number,
+    groupid: number
+}>()
 
 const emit = defineEmits(['update:level'])
 

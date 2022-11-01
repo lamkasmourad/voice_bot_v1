@@ -1,4 +1,5 @@
 export interface Keyword {
-    value: string;
-    level: Number;
+    id: number;
+    label?: string;
+    level: number;
 }

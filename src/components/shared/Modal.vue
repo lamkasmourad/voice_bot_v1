@@ -133,6 +133,7 @@
             </button>
             <button
               type="button"
+              @click.prevent="save"
               class="
                 inline-block
                 px-6
@@ -168,6 +169,10 @@
 
 <script setup lang="ts">
 import { watch, ref, toRefs } from "vue";
+import useKeyword from "@/components/contenu/useKeyword";
+const emit = defineEmits(['save'])
+
+const { keywords } = useKeyword(); 
 
 const props = defineProps({
   title: String,
@@ -192,6 +197,10 @@ watch(
   },
   { deep: true }
 );
+
+function save(){
+  emit('save'); 
+}
 
 let { title,open } = props;
 </script>
