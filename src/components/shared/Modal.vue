@@ -11,11 +11,10 @@
         top-3
         left-0
         w-full
-        h-full
         outline-none
         overflow-x-hidden overflow-y-auto
       "
-      
+      style="80%"
       id="exampleModalScrollable"
       tabindex="-1"
       aria-labelledby="exampleModalScrollableLabel"
@@ -47,6 +46,7 @@
             outline-none
             text-current
           "
+          style="margin-top:60px;max-height:800px;scroll;overflow: hidden"
         >
           <div
             class="
@@ -83,13 +83,15 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="flex-auto overflow-y-auto relative p-4 mt-10">
-            <perfect-scrollbar>
-              <slot> </slot>
-              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+          <div class="flex-auto overflow-y-auto relative p-4 mt-10" style="overflow:hidden;">
+            <perfect-scrollbar ref="scroll">
+              
+                <slot> </slot>
+                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                <br />
+             
+              
             </perfect-scrollbar>
           </div>
           <div
@@ -171,7 +173,7 @@
 import { watch, ref, toRefs } from "vue";
 import useKeyword from "@/components/contenu/useKeyword";
 const emit = defineEmits(['save'])
-
+const scroll = ref(null);
 const { keywords } = useKeyword(); 
 
 const props = defineProps({
@@ -202,5 +204,21 @@ function save(){
   emit('save'); 
 }
 
+function scrollToTop(){
+  console.log("yes working"); 
+  if(scroll.value!==undefined){
+    scroll.value.$el.scrollTop  = 0;
+  }
+}
+
+defineExpose({
+    scrollToTop
+})
+
 let { title,open } = props;
 </script>
+<style>
+.ps{
+  max-height: 800px;
+}
+</style>
