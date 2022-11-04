@@ -18,13 +18,15 @@ export default function useKeyword() {
             newKeyword.id = keyword.id + 1;
             newKeyword.label = '';
             newKeyword.level = 0;
-            keywords.push(newKeyword)
+            newKeyword.synonyms=[""];
+            keywords.push(newKeyword);
             error.value = "";
         }
 
     };
     const deleteKeyword = (index: number) => {
         if (keywords.length > 1) {
+            error.value = "";
             keywords.splice(index, 1)
         }
     }

@@ -12,15 +12,15 @@
       
       <div class="flex items-center" style="margin-bottom: 30px" v-for="(keyword, index) in keywords"
         :key="index">
-        <div style="width:100%;display: flex; align-items: center;">
+        <div style="width:100%;display: flex; ">
           
           <keyword-item :keyword="keyword" :groupid="index"></keyword-item>
           <div class="mt-2 ml-2">
-            <a @click.prevent="addKeyword(keyword)" class="mr-2">
+            <a @click.prevent="addKeyword(keyword)" class="mr-2 pointer">
               <font-awesome-icon icon="fa-solid fa-square-plus fa-xl" size="lg" />
             </a>
             <a @click.prevent="deleteKeyword(index)">
-              <font-awesome-icon icon="fa-solid fa-square-minus" size="lg" />
+              <font-awesome-icon icon="fa-solid fa-square-minus" class="pointer" size="lg" />
             </a>
           </div>
         </div>
@@ -36,21 +36,20 @@ import { WeightEnum } from "@/enums/WeightEnum";
 import useKeyword from './useKeyword'
 import { onMounted,watch,ref } from "vue"; 
 
-
+const modelref= ref()
 const {keywords,error, addKeyword, deleteKeyword, saveKeywords } = useKeyword(); 
+
 onMounted(()=> {
   const keyword: Keyword = {id: 0, label: "", level: WeightEnum.FAIBLE } 
   addKeyword(keyword); 
 })
 
-const modelref= ref()
-
 watch(() => error, (newValue) => {
-  if(!newValue.value){
+  if(newValue.value){
     modelref.value.scrollToTop(); 
   }
-}, { deep: true }
-)
+}, 
+{ deep: true });
 
 function saveContenu(){
   saveKeywords(); 
@@ -69,6 +68,9 @@ function saveContenu(){
     margin: 4px;
     display: inline-block;
     vertical-align: middle;
+  }
+  .pointer{
+    cursor:pointer;
   }
   .circle.plus:before,
   .circle.plus:after {
@@ -101,4 +103,6 @@ function saveContenu(){
     margin: auto 2px;
     height: 2px;
   }
+
+
   </style>

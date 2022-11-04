@@ -173,8 +173,8 @@
 import { watch, ref, toRefs } from "vue";
 import useKeyword from "@/components/contenu/useKeyword";
 const emit = defineEmits(['save'])
-const scroll = ref(null);
-const { keywords } = useKeyword(); 
+
+const scroll = ref();
 
 const props = defineProps({
   title: String,
@@ -191,9 +191,7 @@ let stateOpen = toRefs(props).open;
 watch(
   () => stateOpen,
   (oldValue, newValue) => {
-    console.log(newValue)
     if (newValue != undefined) {
-      console.log('yes open modal ' + newValue.value);
       showModal.value = newValue.value;
     }
   },
@@ -205,14 +203,14 @@ function save(){
 }
 
 function scrollToTop(){
-  console.log("yes working"); 
+  console.log("scroll top"); 
   if(scroll.value!==undefined){
     scroll.value.$el.scrollTop  = 0;
   }
 }
 
 defineExpose({
-    scrollToTop
+    scrollToTop,
 })
 
 let { title,open } = props;
