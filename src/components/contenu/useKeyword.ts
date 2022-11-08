@@ -18,7 +18,7 @@ export default function useKeyword() {
             newKeyword.id = keyword.id + 1;
             newKeyword.label = '';
             newKeyword.level = 0;
-            newKeyword.synonyms=[""];
+            newKeyword.synonyms=[];
             keywords.push(newKeyword);
             error.value = "";
         }
