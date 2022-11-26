@@ -31,7 +31,7 @@
         <div style="width: 100%; display: flex; position: relative">
           <keyword-item :keyword="keyword" :groupid="index"></keyword-item>
           <div class="mt-2 ml-2">
-            <a @click.prevent="showSynonyms(index)" class="mr-2 link-synonym pointer">
+            <a @click.prevent="showSynonym" class="mr-2 link-synonym pointer">
               <font-awesome-icon icon="fa-solid fa-s" size="lg" />
             </a>
             <a @click.prevent="addKeyword(keyword)" class="mr-2 pointer">
@@ -59,7 +59,7 @@ import useKeyword from "./useKeyword";
 import { onMounted, watch, ref } from "vue";
 
 const modelref = ref();
-const { keywords, error, addKeyword, deleteKeyword, saveKeywords } = useKeyword();
+const { keywords, error, addKeyword, addSynonym, deleteKeyword, saveKeywords } = useKeyword();
 
 onMounted(() => {
   const keyword: Keyword = { id: 0, label: "", level: WeightEnum.FAIBLE };
@@ -80,8 +80,8 @@ function saveContenu() {
   saveKeywords();
 }
 
-function showSynonyms(groupId: number) {
-  modelref.value.showSynonyms(groupId);
+function showSynonym(){
+  
 }
 </script>
 

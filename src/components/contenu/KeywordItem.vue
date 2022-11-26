@@ -12,7 +12,7 @@
       class="flex items-center"
       style="align-items: center; justify-content: center"
     >
-      <input
+      <input v-if="keyword.synonyms"
         v-model="keyword.synonyms[index]"
         :key="index"
         class="appearance-none bg-transparent border-none input input-synonym focus:outline-none"
@@ -52,9 +52,11 @@ function deleteSynonym(index: number) {
   }
 }
 
-function showSynonyms(index: number) {
-  addSynonym();
+function showSynonym(){
+  console.log("yes working"); 
 }
+
+
 </script>
 <style>
 input:focus::placeholder {

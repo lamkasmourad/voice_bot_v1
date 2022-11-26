@@ -24,6 +24,7 @@ export default function useKeyword() {
         }
 
     };
+
     const deleteKeyword = (index: number) => {
         if (keywords.length > 1) {
             error.value = "";
@@ -35,5 +36,10 @@ export default function useKeyword() {
         KeywordService.addKeywords(keywords)
     }
 
-    return { keywords, error, addKeyword, deleteKeyword, saveKeywords };
+    const addSynonym = (index: number) => {
+        keywords[index].synonyms?.push(""); 
+        
+    }
+
+    return { keywords, error, addKeyword, addSynonym, deleteKeyword, saveKeywords };
 }
