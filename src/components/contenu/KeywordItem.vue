@@ -12,7 +12,8 @@
       class="flex items-center"
       style="align-items: center; justify-content: center"
     >
-      <input v-if="keyword.synonyms"
+      <input
+        v-if="keyword.synonyms"
         v-model="keyword.synonyms[index]"
         :key="index"
         class="appearance-none bg-transparent border-none input input-synonym focus:outline-none"
@@ -47,16 +48,10 @@ function addSynonym() {
 }
 
 function deleteSynonym(index: number) {
-  if (props.keyword.synonyms != null) {
+  if (props.keyword.synonyms != null && props.keyword.synonyms.length > 1) {
     props.keyword.synonyms.splice(index, 1);
   }
 }
-
-function showSynonym(){
-  console.log("yes working"); 
-}
-
-
 </script>
 <style>
 input:focus::placeholder {

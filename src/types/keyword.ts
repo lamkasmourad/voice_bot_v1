@@ -3,4 +3,5 @@ export interface Keyword {
     label?: string;
     level: number;
     synonyms?: string[]
+    //showSynonym: boolean,
 }

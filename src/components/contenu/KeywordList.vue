@@ -1,6 +1,6 @@
 <template>
   <div>
-    <modal :open="true" title="Ajouter un mot clé" @save="saveContenu" ref="modelref">
+    <modal :open="false" title="Ajouter un mot clé" @save="saveContenu" ref="modelref">
       <div
         class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
         role="alert"
@@ -31,9 +31,9 @@
         <div style="width: 100%; display: flex; position: relative">
           <keyword-item :keyword="keyword" :groupid="index"></keyword-item>
           <div class="mt-2 ml-2">
-            <a @click.prevent="showSynonym" class="mr-2 link-synonym pointer">
+            <!-- <a @click.prevent="showSynonyms(index)" class="mr-2 link-synonym pointer">
               <font-awesome-icon icon="fa-solid fa-s" size="lg" />
-            </a>
+            </a> -->
             <a @click.prevent="addKeyword(keyword)" class="mr-2 pointer">
               <font-awesome-icon icon="fa-solid fa-square-plus fa-xl" size="lg" />
             </a>
@@ -59,7 +59,14 @@ import useKeyword from "./useKeyword";
 import { onMounted, watch, ref } from "vue";
 
 const modelref = ref();
-const { keywords, error, addKeyword, addSynonym, deleteKeyword, saveKeywords } = useKeyword();
+const {
+  keywords,
+  error,
+  addKeyword,
+  addSynonym,
+  deleteKeyword,
+  saveKeywords,
+} = useKeyword();
 
 onMounted(() => {
   const keyword: Keyword = { id: 0, label: "", level: WeightEnum.FAIBLE };
@@ -80,9 +87,7 @@ function saveContenu() {
   saveKeywords();
 }
 
-function showSynonym(){
-  
-}
+function showSynonym() {}
 </script>
 
 <style scoped>

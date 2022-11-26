@@ -15,9 +15,13 @@ import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css'
 
 import FontAwesomeIcon from "@/config/fontawesome-icons";
 
+import Notifications from '@kyvg/vue3-notification'
+
+
 const app = createApp(App);
 
 app.use(PerfectScrollbar)
+app.use(Notifications)
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.component('loading',Loading) 
 app.component('multiselect',Multiselect);
