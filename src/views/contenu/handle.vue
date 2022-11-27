@@ -81,7 +81,7 @@
       </div>
     </div>
     <keyword-list></keyword-list>
-    <notifications position="top left" classes="my-custom-class" />
+    <notifications position="bottom left" class="my-notification"> </notifications>
   </div>
 </template>
 
@@ -123,14 +123,25 @@ onMounted(() => {
 });
 
 function createContenu() {
-  //console.log("open modal");
   //openModal.value = true;
-  notification.notify({
-    type: "success",
-    title: "Vue 3 notification 🎉",
-    text: "Hello world",
+
+  ContenuService.createContenu(formData).then((response) => {
+    let message = "";
+    if (response && response.data) {
+      if (response.data.message == "success") {
+        message = "Contenu a été ajouté avec succés";
+      } else if (response.data.message == "duplicated") {
+        message = "Contenu déjà exist";
+      }
+    }
+    if (message) {
+      notification.notify({
+        type: "success",
+        title: "Contenu",
+        text: message,
+      });
+    }
   });
-  //ContenuService.createContenu(formData).then((data: any) => {});
 }
 </script>
 

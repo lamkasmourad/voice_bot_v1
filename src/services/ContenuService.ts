@@ -10,7 +10,7 @@ class ContenuService {
 
     createContenu(formData: any): Promise<any>{
         return http.post("contenu/create",formData).then((response: any) => {
-            console.log(response.data); 
+            return response;
         });  
     }
 

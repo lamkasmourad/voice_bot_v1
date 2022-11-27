@@ -15,6 +15,7 @@ import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css'
 
 import FontAwesomeIcon from "@/config/fontawesome-icons";
 
+
 import Notifications from '@kyvg/vue3-notification'
 
 
@@ -28,6 +29,6 @@ app.component('multiselect',Multiselect);
 
 
 app.use(router)
-.mount('#app')
+.mount('#app')  
 
 
